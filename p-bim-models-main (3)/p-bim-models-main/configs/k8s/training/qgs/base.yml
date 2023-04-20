@@ -1,0 +1,50 @@
+dataset:
+  base:
+    batch_size: 64
+    workers: 12
+    window_size: 32
+    horizon_size: 32
+    shuffle: false
+    in_memory: True
+  train:
+    path: "/data/QGS/A/zzzAU.dat"
+    shuffle: true
+  val:
+    path: "/data/QGS/B/zzzBU.dat"
+    ratio: 0.33
+  test:
+    path: "/data/QGS/A/zzzAD1.dat"
+denormalize: true
+loss:
+  type: "mse"
+  reduction: "mean"
+  multi_step: True
+metrics:
+  - "mae"
+  - "mape"
+  - "rmse"
+  - "mse"
+optimizers:
+  optimizer:
+    name: "adam"
+    lr: 0.004
+    weight_decay: 0
+  scheduler:
+    name: "exponential"
+    gamma: 0.99
+trainer:
+  devices: 1
+  accelerator: "gpu"
+  max_epochs: 100
+  logger:
+    log_model: True
+  checkpoint:
+    metric: "val_TimeSeriesMAE"
+    dirpath: "/tmp/checkpoints"
+    save_top_k: 3
+    filename: "checkpoint-{epoch}-mae-{val_TimeSeriesMAE:.4f}"
+  early_stopping:
+    metric: "val_TimeSeriesMAE"
+    patience: 15
+    verbose: True
+    delta: 0.0001

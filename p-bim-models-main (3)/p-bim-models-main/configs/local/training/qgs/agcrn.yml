@@ -1,0 +1,14 @@
+base: "./base.yml"
+model:
+  type: "agcrn"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  output_channels: 1
+  num_layers: 2
+  node_embedding_dim: 8
+  rnn_hidden_dim: 16
+  dropout: 0.1
+  cheb_k: 2
+loss:
+  type: "mae"

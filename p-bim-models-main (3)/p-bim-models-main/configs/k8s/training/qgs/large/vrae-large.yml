@@ -1,0 +1,15 @@
+base: "./base.yml"
+dataset:
+  base:
+    horizon_size: 0
+    mirror: True
+model:
+  type: "vrae"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  hidden_dim: 128
+  latent_dim: 32
+  num_layers: 2
+  block: "LSTM"
+  dropout: 0.1

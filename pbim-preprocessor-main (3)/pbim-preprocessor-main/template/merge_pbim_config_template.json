@@ -1,0 +1,8 @@
+{
+  "base_path": "/data/PBIM/",
+  "output_file": "{{OUTPUT_FILE}}",
+  {%- if SCENARIO != "N" %}
+  "use_statistics_from": "/data/PBIM/N/merged/reference/{{AGGREGATION}}-{{STRATEGY}}/assembled.dat",
+  {%- endif %}
+  "files": {{FILES}}
+}

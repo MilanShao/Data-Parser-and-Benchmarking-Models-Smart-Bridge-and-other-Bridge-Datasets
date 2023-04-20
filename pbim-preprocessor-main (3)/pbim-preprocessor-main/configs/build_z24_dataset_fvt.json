@@ -1,0 +1,125 @@
+{
+  "template_path": "template/assemble_job_template_z24.yml",
+  "output_path": "k8s/assemble_jobs/z24/fvt",
+  "assembly_configs": [
+    {
+      "identifier": "scenario-01-fvt",
+      "meta": {
+        "scenario": "01",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-02-fvt",
+      "meta": {
+        "scenario": "02",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-03-fvt",
+      "meta": {
+        "scenario": "03",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-04-fvt",
+      "meta": {
+        "scenario": "04",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-05-fvt",
+      "meta": {
+        "scenario": "05",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-06-fvt",
+      "meta": {
+        "scenario": "06",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-07-fvt",
+      "meta": {
+        "scenario": "07",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-08-fvt",
+      "meta": {
+        "scenario": "08",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-09-fvt",
+      "meta": {
+        "scenario": "09",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-10-fvt",
+      "meta": {
+        "scenario": "10",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-11-fvt",
+      "meta": {
+        "scenario": "11",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-12-fvt",
+      "meta": {
+        "scenario": "12",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-13-fvt",
+      "meta": {
+        "scenario": "13",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-14-fvt",
+      "meta": {
+        "scenario": "14",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-15-fvt",
+      "meta": {
+        "scenario": "15",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-16-fvt",
+      "meta": {
+        "scenario": "16",
+        "scenario_type": "fvt"
+      }
+    },
+    {
+      "identifier": "scenario-17-fvt",
+      "meta": {
+        "scenario": "17",
+        "scenario_type": "fvt"
+      }
+    }
+  ]
+}

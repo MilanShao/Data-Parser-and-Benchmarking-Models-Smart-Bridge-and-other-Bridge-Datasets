@@ -1,0 +1,10 @@
+base: "./base.yml"
+model:
+  type: "tcn"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  hidden_size: 64
+  num_layers: 4
+  dropout: 0.2
+  kernel_size: 5

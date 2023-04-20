@@ -1,0 +1,51 @@
+dataset:
+  base:
+    path: "../data/assembled/PBIM/N/april-week-01/assembled.dat"
+    batch_size: 64
+    workers: 4
+    window_size: 128
+    horizon_size: 128
+    shuffle: true
+    in_memory: False
+  train:
+    ratio: 0.8
+  val:
+    ratio: 0.1
+  test:
+    ratio: 0.1
+denormalize: true
+loss:
+  type: "mse"
+  reduction: "mean"
+  multi_step: True
+metrics:
+  - "mae"
+  - "mape"
+  - "rmse"
+  - "mse"
+optimizers:
+  optimizer:
+    name: "adam"
+    lr: 0.001
+    weight_decay: 0
+  scheduler:
+    name: "exponential"
+    gamma: 0.99
+trainer:
+  devices: "auto"
+  accelerator: "cpu"
+  max_epochs: 10
+  logger:
+    log_model: True
+    project: test
+    name: tcn-test
+  checkpoint:
+    metric: "val_TimeSeriesMAE"
+    dirpath: "/tmp/checkpoints"
+    save_top_k: 3
+    filename: "checkpoint-{epoch}-mae-{val_TimeSeriesMAE:.4f}"
+  early_stopping:
+    metric: "val_TimeSeriesMAE"
+    patience: 3
+    verbose: True
+

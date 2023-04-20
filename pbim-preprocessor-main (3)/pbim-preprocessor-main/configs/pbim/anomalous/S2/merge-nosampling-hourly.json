@@ -1,0 +1,27 @@
+{
+  "base_path": "/data/PBIM/",
+  "output_file": "/data/PBIM/S2/merged/anomalous/reference/nosampling-hourly/assembled.dat",
+  "use_statistics_from": "/data/PBIM/N/merged/reference/nosampling-hourly/assembled.dat",
+  "files": [
+    {
+        "relative_path": "N/post-processed/nosampling-hourly/february-week-01/assembled.dat",
+        "is_anomalous": false,
+        "include_in_statistics": false
+    },
+    {
+        "relative_path": "N/post-processed/nosampling-hourly/june-week-01/assembled.dat",
+        "is_anomalous": false,
+        "include_in_statistics": false
+    },
+    {
+        "relative_path": "S2/post-processed/nosampling-hourly/july-week-02/assembled.dat",
+        "is_anomalous": true,
+        "include_in_statistics": false
+    },
+    {
+        "relative_path": "S2/post-processed/nosampling-hourly/august-week-01/assembled.dat",
+        "is_anomalous": true,
+        "include_in_statistics": false
+    }
+]
+}

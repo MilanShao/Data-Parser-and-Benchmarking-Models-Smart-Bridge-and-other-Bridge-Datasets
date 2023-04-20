@@ -1,0 +1,8 @@
+base: "./base.yml"
+model:
+  type: "mtgnn"
+  input_size: 36
+  input_channels: 1
+  output_size: 36
+loss:
+  type: "mae"

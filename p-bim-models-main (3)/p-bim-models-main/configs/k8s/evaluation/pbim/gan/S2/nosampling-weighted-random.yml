@@ -1,0 +1,19 @@
+run:
+  project: pbim-reference-gans-nosampling-weighted-random
+  entity: ma-thesis-kohlmann
+  id: [89ej5f8w, hmv4jh97]
+  separate: true
+  use_best: false
+output_path: "/out/pbim/S2/{{NAME}}/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}
+  dataset:
+    base:
+      grouping: "pbim"
+    test:
+      path: "/data/PBIM/S2/merged/anomalous/reference/nosampling-weighted-random/assembled.dat"
+      shuffle: false

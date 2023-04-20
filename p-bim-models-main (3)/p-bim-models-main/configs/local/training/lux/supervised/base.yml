@@ -1,0 +1,48 @@
+dataset:
+  base:
+    path: "../data/assembled/LUX/undamaged/assembled.dat"
+    batch_size: 8
+    workers: 0
+    window_size: 128
+    horizon_size: 128
+    in_memory: False
+    shuffle: false
+  train:
+    ratio: 0.8
+    shuffle: true
+  val:
+    ratio: 0.1
+  test:
+    ratio: 0.1
+denormalize: true
+loss:
+  type: "bce"
+  reduction: "mean"
+  multi_step: false
+metrics:
+  - "precision": {}
+  - "recall": {}
+  - "f1": {}
+optimizers:
+  optimizer:
+    name: "adam"
+    lr: 0.001
+    weight_decay: 0
+trainer:
+  devices: "1"
+  accelerator: "gpu"
+  max_epochs: 10
+  logger:
+    log_model: True
+    project: supervised
+  checkpoint:
+    metric: "val_f1@0.5000"
+    dirpath: "/checkpoints"
+    save_top_k: 3
+    filename: "checkpoint-{epoch}-f1-{val_f1@0.5000:.4f}"
+  early_stopping:
+    metric: "val_f1@0.5000"
+    patience: 3
+    verbose: True
+    delta: 0.001
+

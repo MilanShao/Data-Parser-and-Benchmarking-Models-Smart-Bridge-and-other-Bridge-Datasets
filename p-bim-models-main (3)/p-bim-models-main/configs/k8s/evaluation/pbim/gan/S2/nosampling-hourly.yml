@@ -1,0 +1,19 @@
+run:
+  project: pbim-reference-gans-nosampling-hourly
+  entity: ma-thesis-kohlmann
+  id: [6rokdcyj, 7f2y98j1, hozoucyx]
+  separate: true
+  use_best: false
+output_path: "/out/pbim/S2/{{NAME}}/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}
+  dataset:
+    base:
+      grouping: "pbim"
+    test:
+      path: "/data/PBIM/S2/merged/anomalous/reference/nosampling-hourly/assembled.dat"
+      shuffle: false

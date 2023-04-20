@@ -1,0 +1,55 @@
+dataset:
+  base:
+    batch_size: 8
+    workers: 8
+    window_size: 128
+    horizon_size: 128
+    shuffle: true
+    in_memory: False
+  train:
+    path: "../data/assembled/qgs/A/zzzAU.dat"
+type: "gan"
+model:
+  generator:
+    layers:
+      - 64
+      - 128
+      - 128
+      - 128
+      - 64
+    kernel_size: 3
+    latent_size: 2
+    input_size: 30
+  discriminator:
+    layers:
+      - 64
+      - 32
+      - 16
+    kernel_size: 3
+    input_channels: 1
+    input_size: 30
+optimizers:
+  generator:
+    optimizer:
+      name: "adam"
+      lr: 0.001
+      weight_decay: 0
+  discriminator:
+    optimizer:
+      name: "adam"
+      lr: 0.001
+      weight_decay: 0
+trainer:
+  devices: "auto"
+  accelerator: "cpu"
+  max_epochs: 25
+  limit_train_batches: 1000
+  logger:
+    log_model: True
+    project: "test"
+  checkpoint:
+    metric: "val_TimeSeriesMAE"
+    dirpath: "/tmp/checkpoints"
+    save_top_k: 3
+    filename: "checkpoint-{epoch}.ckpt"
+

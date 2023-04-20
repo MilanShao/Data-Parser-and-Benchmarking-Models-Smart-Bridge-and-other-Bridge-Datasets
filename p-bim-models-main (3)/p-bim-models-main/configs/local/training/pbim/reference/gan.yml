@@ -1,0 +1,32 @@
+base: "./base.yml"
+dataset:
+  base:
+    grouping: "pbim"
+  train:
+    path: "../data/assembled/PBIM/N/post-processed/mean-hourly/april-week-01/assembled.dat"
+metrics:
+  val:
+    - f1: {}
+model:
+  loss: "bce"
+  generator:
+    layers:
+      - 32
+      - 64
+      - 32
+    kernel_size: 3
+    noise_channels: 4
+    noise_length: 8
+    input_channels: 2
+    input_size: 12
+    output_channels: 2
+    output_size: 12
+  discriminator:
+    layers:
+      - 32
+      - 64
+      - 32
+    kernel_size: 3
+    clip_value: 0.01
+    input_channels: 2
+    input_size: 12

@@ -1,0 +1,16 @@
+base: "./base.yml"
+model:
+  type: "tcnae"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  num_layer: 5
+  num_filter: 64
+  conv_output_size: 32
+  avg_pool_size: 16
+  hidden_size: 8
+  dropout: 0.1
+  kernel_size: 5
+trainer:
+    logger:
+        project: "qgs-tcnae-long-running-64"

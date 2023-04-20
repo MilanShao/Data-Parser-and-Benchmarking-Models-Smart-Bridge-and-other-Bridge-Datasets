@@ -1,0 +1,102 @@
+{
+  "template_path": "template/assemble_job_template_pbim.yml",
+  "output_path": "k8s/assemble_jobs/pbim/weeks-100ms/",
+  "assembly_configs": [
+    {
+      "identifier": "week-01",
+      "start_time": "2018-01-01T00:00:00",
+      "end_time": "2018-01-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "01"
+    },
+    {
+      "identifier": "week-02",
+      "start_time": "2018-02-01T00:00:00",
+      "end_time": "2018-02-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "02"
+    },
+    {
+      "identifier": "week-03",
+      "start_time": "2018-03-01T00:00:00",
+      "end_time": "2018-03-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "03"
+    },
+    {
+      "identifier": "week-04",
+      "start_time": "2018-04-01T00:00:00",
+      "end_time": "2018-04-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "04"
+    },
+ {
+      "identifier": "week-05",
+      "start_time": "2018-05-01T00:00:00",
+      "end_time": "2018-05-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "05"
+    },
+    {
+      "identifier": "week-06",
+      "start_time": "2018-06-01T00:00:00",
+      "end_time": "2018-06-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "06"
+    },
+    {
+      "identifier": "week-07",
+      "start_time": "2018-07-01T00:00:00",
+      "end_time": "2018-07-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "07"
+    },
+    {
+      "identifier": "week-08",
+      "start_time": "2018-08-01T00:00:00",
+      "end_time": "2018-08-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "08"
+    },
+    {
+      "identifier": "week-09",
+      "start_time": "2018-09-01T00:00:00",
+      "end_time": "2018-09-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "09"
+    },
+    {
+      "identifier": "week-10",
+      "start_time": "2018-10-01T00:00:00",
+      "end_time": "2018-10-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "10"
+    },
+    {
+      "identifier": "week-11",
+      "start_time": "2018-11-01T00:00:00",
+      "end_time": "2018-11-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "11"
+    },
+    {
+      "identifier": "week-12",
+      "start_time": "2018-12-01T00:00:00",
+      "end_time": "2018-12-06T23:59:59",
+      "resolution": "0.1",
+      "strategy": "mean",
+      "week": "12"
+    }
+  ]
+}

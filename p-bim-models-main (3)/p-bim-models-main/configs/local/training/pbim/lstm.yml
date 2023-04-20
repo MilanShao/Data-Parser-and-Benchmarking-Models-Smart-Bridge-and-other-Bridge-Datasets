@@ -1,0 +1,13 @@
+base: "./base.yml"
+dataset:
+  base:
+    horizon_size: 0
+    mirror: True
+model:
+  type: "lstm"
+  input_size: 12
+  input_channels: 1
+  output_size: 12
+  output_channels: 1
+  hidden_size: 16
+  num_layers: 2

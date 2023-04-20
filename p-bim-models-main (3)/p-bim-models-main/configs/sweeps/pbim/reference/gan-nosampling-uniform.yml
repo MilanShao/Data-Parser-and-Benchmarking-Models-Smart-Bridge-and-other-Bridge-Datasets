@@ -1,0 +1,71 @@
+program: bin/main.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - sweep
+  - /app/configs/sweeps/pbim/reference/base.yml
+  - ${args_json_file}
+method: random
+metric:
+  name: dummy
+  goal: maximize
+name: pbim-reference-sweep-nosampling-uniform
+project: pbim-reference-gans-nosampling-uniform
+parameters:
+  dataset:
+    parameters:
+      train:
+        parameters:
+          path:
+            value: "/data/PBIM/N/merged/reference/nosampling-uniform/assembled.dat"
+  model:
+    parameters:
+      loss:
+        values: ["bce", "wasserstein"]
+      generator:
+        parameters:
+          layers:
+            values: [[32,64,32], [64, 128, 32]]
+          kernel_size:
+            values: [3, 5]
+          noise_channels:
+            value: 4
+          noise_length:
+            value: 8
+          input_channels:
+            value: 2
+          output_channels:
+            value: 2
+          output_size:
+            value: 12
+          input_size:
+            value: 12
+      discriminator:
+        parameters:
+          layers:
+            values: [[32, 64, 32], [64, 128, 64]]
+          kernel_size:
+            values: [3, 5]
+          clip_value:
+            value: 0.01
+          input_channels:
+            value: 2
+          input_size:
+            value: 12
+  optimizers:
+    parameters:
+      discriminator:
+        parameters:
+          optimizer:
+            parameters:
+              lr:
+                value: 0.001
+              frequency:
+                values: [0.5, 1, 3]
+  trainer:
+    parameters:
+      logger:
+        parameters:
+          project:
+            value: pbim-reference-gans-nosampling-uniform

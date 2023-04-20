@@ -1,0 +1,17 @@
+run:
+  project: z24-reference-gans
+  entity: ma-thesis-kohlmann
+  id: d1phcr0v
+  artifact_id: ma-thesis-kohlmann/uncategorized/model-d1phcr0v:v24
+overrides:
+  dataset:
+    base:
+      workers: 0
+      cache: null
+    val: {}
+    test: {}
+    train: {}
+  trainer:
+    accelerator: "cpu"
+    devices: "auto"
+    limit_predict_batches: 1

@@ -1,0 +1,19 @@
+run:
+  project: pbim-reference-gans-interpolate-hourly
+  entity: ma-thesis-kohlmann
+  id: "fhcyisfo"
+  separate: true
+  use_best: false
+output_path: "/out/pbim/S1/{{NAME}}/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}
+  dataset:
+    base:
+      grouping: "pbim"
+    test:
+      path: "/data/PBIM/S1/merged/anomalous/reference/interpolate-hourly/assembled.dat"
+      shuffle: false

@@ -1,0 +1,24 @@
+run:
+  project: pbim-reference-gans-nosampling-uniform
+  entity: ma-thesis-kohlmann
+  id: "wlas0e9d"
+  separate: true
+  use_best: false
+output_path: "/tmp/pbim/gan/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+  trainer:
+    accelerator: "mps"
+    devices: "auto"
+    limit_test_batches: 100
+  dataset:
+    base:
+      batch_size: 64
+      workers: 0
+      grouping: "pbim"
+    test:
+      shuffle: true
+      path: "../data/assembled/PBIM/N/post-processed/mean-hourly/april-week-01/assembled.dat"

@@ -1,0 +1,10 @@
+base: "./base.yml"
+model:
+  type: "agcrn"
+  nodes: 36
+  input_dim: 1
+  output_dim: 1
+  rnn_units: 64
+  num_layers: 2
+loss:
+  type: "mae"

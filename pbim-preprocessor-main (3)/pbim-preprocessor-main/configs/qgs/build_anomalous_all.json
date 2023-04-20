@@ -1,0 +1,193 @@
+{
+  "base_path": "/data/QGS/",
+  "output_file": "/data/QGS/anomalous/all/assembled.dat",
+  "use_statistics_from": "/data/QGS/A/zzzAU.dat",
+  "files": [
+    {
+        "relative_path": "B/zzzBU.dat",
+        "offset": 0.33,
+        "ratio": 0.67,
+        "is_anomalous": false
+    },
+    {
+        "relative_path": "B/zzzBD1.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD2.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD3.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD4.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD5.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD6.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD7.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD8.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD9.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD10.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD11.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD12.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD13.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD14.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD15.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD16.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD17.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD18.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD19.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD20.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD21.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD22.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD23.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD24.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD25.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD26.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD27.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD28.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD29.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    },
+    {
+        "relative_path": "B/zzzBD30.dat",
+        "offset": 0.5,
+        "ratio": 0.022,
+        "is_anomalous": true
+    }
+  ]
+}

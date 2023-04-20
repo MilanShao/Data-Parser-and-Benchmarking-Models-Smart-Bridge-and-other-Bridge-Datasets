@@ -1,0 +1,17 @@
+base: "./base.yml"
+model:
+  type: "stfgnn"
+  input_size: 30
+  input_channels: 1
+  output_channels: 1
+  filter: [32, 32, 32]
+  num_layer: 2
+use_model_loss: True
+adjacency_matrix:
+  k: 4
+  spatial:
+    type: "file"
+    path: "../data/adjacency_matrices/qgs/qgs_a_distance.npy"
+  temporal:
+    type: "file"
+    path: "../data/adjacency_matrices/qgs/qgs_a_dtw.npy"

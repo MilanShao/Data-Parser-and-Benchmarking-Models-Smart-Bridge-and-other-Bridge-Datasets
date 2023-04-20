@@ -1,0 +1,2 @@
+#!/bin/bash
+python bin/main.py assemble $MODE $BASE_PATH $OUTPUT_PATH --start-time $START_TIME --end-time $END_TIME --resolution $RESOLUTION --strategy $STRATEGY --output-format $FORMAT --channel $CHANNEL --temperature-data-path /app/static/temperatures_pbim.xlsx

@@ -1,0 +1,31 @@
+program: bin/main.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - sweep
+  - /app/configs/sweeps/qgs/base.yml
+  - ${args_json_file}
+method: random
+metric:
+  name: val_TimeSeriesMAE
+  goal: minimize
+name: qgs-sweep-mlp
+project: qgs-mlp
+parameters:
+  model:
+    parameters:
+      type:
+        value: "mlp"
+      input_size:
+        value: 30
+      input_channels:
+        value: 1
+      output_size:
+        value: 30
+      output_channels:
+        value: 1
+      hidden_sizes:
+        values: [[512, 256], [256, 128], [128, 64], [512], [256], [128], [64]]
+      dropout:
+        values: [0.1, 0.2]

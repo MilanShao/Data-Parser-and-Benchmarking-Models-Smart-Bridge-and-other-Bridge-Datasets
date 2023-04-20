@@ -1,0 +1,20 @@
+run:
+  project: qgs-mtgnn
+  entity: ma-thesis-kohlmann
+  id: "efc9vwkq"
+  separate: true
+output_path: "/out/qgs/mtgnn/eval/mahalanobis"
+overrides:
+  test_config:
+    type: "mahalanobis"
+    aggregation: "mean"
+    errors: "/out/qgs/mtgnn/stats/$ID/errors.npy"
+    threshold_fraction: 0.95
+  dataset:
+    test:
+      path: "/data/QGS/anomalous/all/assembled.dat"
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}

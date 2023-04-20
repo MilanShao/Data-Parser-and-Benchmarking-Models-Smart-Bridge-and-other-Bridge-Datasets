@@ -1,0 +1,13 @@
+base: "./base.yml"
+model:
+  type: "tgcn"
+  input_size: 249
+  hidden_size: 64
+loss:
+  type: "mse"
+adjacency_matrix:
+  type: "uniform"
+  num_nodes: 249
+trainer:
+  logger:
+    name: "tgcn-adj-uniform"

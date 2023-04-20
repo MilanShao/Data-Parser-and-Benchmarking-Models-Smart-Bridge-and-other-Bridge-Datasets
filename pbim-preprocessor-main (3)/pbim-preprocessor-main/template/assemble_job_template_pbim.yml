@@ -1,0 +1,70 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: assemble-{{identifier}}-{{(resolution|float * 1000)|int}}ms
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-preprocessor:0.1
+          name: preprocess
+          imagePullPolicy: "Always"
+          env:
+            - name: BASE_PATH
+              value: "/data"
+            - name: OUTPUT_PATH
+              value: "/out/{{identifier}}/assembled-{{identifier}}-{{start_time}}-{{end_time}}.dat"
+            - name: MODE
+              value: "pbim"
+            - name: START_TIME
+              value: "{{start_time}}"
+            - name: END_TIME
+              value: "{{end_time}}"
+            - name: RESOLUTION
+              value: "{{resolution}}"
+            - name: STRATEGY
+              value: "{{strategy}}"
+            - name: FORMAT
+              value: "binary"
+            - name: CHANNEL
+              value: "relevant"
+          resources:
+            limits:
+              cpu: "2"
+              memory: "16Gi"
+            requests:
+              cpu: "1"
+              memory: "12Gi"
+          command: ["bash", "./scripts/assemble.sh"]
+          volumeMounts:
+            - mountPath: /data # directory IN the container
+              name: data # matches volume-name from below
+            - mountPath: /out
+              name: out
+            - mountPath: /tmp
+              name: tmp
+      imagePullSecrets:
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/scratch/p-bim-preprocesed/intermediate"
+            secretRef:
+              name: ceph-secret
+            readOnly: true
+        - name: out
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: /home/stud/kohlmann/MA/assembled/PBIM/weeks-{{(resolution|float * 1000)|int}}ms/
+            secretRef:
+              name: ceph-secret
+        - name: tmp
+          emptyDir: {}

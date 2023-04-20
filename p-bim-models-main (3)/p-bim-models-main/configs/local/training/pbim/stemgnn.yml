@@ -1,0 +1,4 @@
+base: "./base.yml"
+model:
+  type: "stemgnn"
+  nodes: 36

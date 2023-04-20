@@ -1,0 +1,13 @@
+base: "./base.yml"
+model:
+  type: "stgcn"
+  input_size: 249
+  num_blocks: 2
+loss:
+  type: "mse"
+adjacency_matrix:
+  type: "random"
+  num_nodes: 249
+trainer:
+  logger:
+    name: "stgcn-adj-random"

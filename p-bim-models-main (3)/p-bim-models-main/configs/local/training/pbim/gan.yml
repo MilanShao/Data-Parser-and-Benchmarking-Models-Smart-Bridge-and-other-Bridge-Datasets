@@ -1,0 +1,52 @@
+dataset:
+  base:
+    batch_size: 1
+    workers: 0
+    window_size: 128
+    horizon_size: 128
+    shuffle: false
+    in_memory: True
+  train:
+    path: "../data/assembled/PBIM/3-weeks/assembled.dat"
+    shuffle: true
+model:
+  loss: bce
+  generator:
+    layers: [64, 128, 32]
+    kernel_size: 3
+    noise_channels: 1
+    noise_length: 8
+    input_channels: 1
+    output_channels: 1
+    output_size: 12
+    input_size: 12
+  discriminator:
+    layers: [64, 128, 64]
+    kernel_size: 3
+    clip_value: 0.001
+    input_channels: 1
+    input_size: 12
+optimizers:
+  generator:
+    optimizer:
+      frequency: 1
+      name: "adam"
+      lr: 0.0001
+      weight_decay: 0
+  discriminator:
+    optimizer:
+      frequency: 5
+      name: "adam"
+      lr: 0.0001
+      weight_decay: 0
+type: "gan"
+trainer:
+  devices: "auto"
+  accelerator: "cpu"
+  max_epochs: 25
+  logger:
+    log_model: True
+  checkpoint:
+    dirpath: "/tmp/checkpoints"
+    save_top_k: -1
+    filename: "checkpoint-{epoch}"

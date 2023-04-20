@@ -1,0 +1,56 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: p-bim-merge-dev-pod
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: joshkeegan/zip:latest
+          name: dev-pod
+          imagePullPolicy: "Always"
+          resources:
+            limits:
+              cpu: "8"
+              memory: "16Gi"
+            requests:
+              cpu: "4"
+              memory: "12Gi"
+          command: ["sh", "-c", "sleep infinity"]
+          volumeMounts:
+            - mountPath: /home/studkohlmann
+              name: home
+            - mountPath: /scratch/p-bim-preprocesed
+              name: preprocessed
+            - mountPath: /scratch/p-bim
+              name: raw
+      imagePullSecrets:
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: home
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/"
+            secretRef:
+              name: ceph-secret
+        - name: preprocessed
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/scratch/p-bim-preprocesed/"
+            secretRef:
+              name: ceph-secret
+        - name: raw
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/scratch/p-bim/"
+            secretRef:
+              name: ceph-secret

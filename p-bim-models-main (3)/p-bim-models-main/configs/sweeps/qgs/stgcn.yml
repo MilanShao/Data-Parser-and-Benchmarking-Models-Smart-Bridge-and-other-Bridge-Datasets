@@ -1,0 +1,40 @@
+program: bin/main.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - sweep
+  - /app/configs/sweeps/qgs/base.yml
+  - ${args_json_file}
+method: random
+metric:
+  name: val_TimeSeriesMAE
+  goal: minimize
+name: qgs-sweep-stgcn
+project: qgs-stgcn
+parameters:
+  model:
+    parameters:
+      type:
+        value: "stgcn"
+      input_size:
+        value: 30
+      num_blocks:
+        values: [2, 4, 6, 8]
+      kernel_size_gc:
+        values: [1, 2, 3]
+      kernel_size_tc:
+        values: [3, 5, 7]
+      dropout:
+        values: [0.1, 0.2]
+      input_channels:
+        value: 1
+  adjacency_matrix:
+    parameters:
+      type:
+        value: "file"
+      path:
+        value: "/adjacency_matrices/QUGS/adjacency_distance_100%.npy"
+
+
+

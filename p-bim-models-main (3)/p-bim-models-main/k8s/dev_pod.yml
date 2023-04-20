@@ -1,0 +1,69 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dev-pod
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-train:0.1
+          name: train-model
+          imagePullPolicy: "Always"
+          env:
+            - name: WANDB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wandb-token
+                  key: token
+          resources:
+            limits:
+              nvidia.com/gpu: "1"
+              cpu: "14"
+              memory: "24Gi"
+            requests:
+              nvidia.com/gpu: "1"
+              cpu: "12"
+              memory: "16Gi"
+          command: [ "sleep", "3600"]
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /checkpoints
+              name: checkpoints
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /.config
+              name: tmp
+            - mountPath: /.cache
+              name: tmp
+            - mountPath: /dev/shm
+              name: dshm
+      imagePullSecrets:
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/assembled"
+            secretRef:
+              name: ceph-secret
+            readOnly: true
+        - name: checkpoints
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/models/checkpoints"
+            secretRef:
+              name: ceph-secret
+        - name: tmp
+          emptyDir: {}
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: "2Gi"

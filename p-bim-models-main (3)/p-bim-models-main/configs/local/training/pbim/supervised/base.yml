@@ -1,0 +1,50 @@
+dataset:
+  base:
+    path: "../data/assembled/PBIM/supervised/assembled.dat"
+    batch_size: 8
+    workers: 0
+    window_size: 128
+    horizon_size: 128
+    shuffle: true
+    in_memory: False
+  train:
+    ratio: 0.1
+  val:
+    ratio: 0.1
+  test:
+    ratio: 0.8
+denormalize: true
+loss:
+  type: "bce"
+  reduction: "mean"
+  multi_step: false
+metrics:
+  - "precision": {}
+  - "recall": {}
+  - "f1": {}
+  - "accuracy": {}
+optimizers:
+  optimizer:
+    name: "adam"
+    lr: 0.001
+    weight_decay: 0
+  scheduler:
+    name: "exponential"
+    gamma: 0.99
+trainer:
+  devices: "auto"
+  accelerator: "cpu"
+  max_epochs: 10
+  logger:
+    log_model: True
+    project: supervised
+  checkpoint:
+    metric: "val_f1@0.5000"
+    dirpath: "/tmp/checkpoints"
+    save_top_k: 3
+    filename: "checkpoint-{epoch}-f1-{val_f1@0.5000:.4f}"
+  early_stopping:
+    metric: "val_f1@0.5000"
+    patience: 3
+    verbose: True
+

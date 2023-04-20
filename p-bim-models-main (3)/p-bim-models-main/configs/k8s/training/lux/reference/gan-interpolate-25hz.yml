@@ -1,0 +1,26 @@
+base: "./base.yml"
+model:
+  loss: "bce"
+  generator:
+    layers: [64, 128, 32]
+    kernel_size: 5
+    noise_channels: 4
+    noise_length: 8
+    input_channels: 2
+    output_channels: 2
+    output_size: 26
+    input_size: 26
+  discriminator:
+    layers: [64, 128, 64]
+    kernel_size: 5
+    clip_value: 0.01
+    input_channels: 2
+    input_size: 26
+optimizers:
+  discriminator:
+    optimizer:
+      lr: 0.001
+      frequency: 1
+trainer:
+  logger:
+    project: lux-reference-gans-test

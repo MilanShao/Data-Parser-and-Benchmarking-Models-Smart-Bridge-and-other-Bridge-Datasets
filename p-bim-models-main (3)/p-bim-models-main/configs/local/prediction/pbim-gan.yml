@@ -1,0 +1,17 @@
+run:
+  project: pbim-reference-gans
+  entity: ma-thesis-kohlmann
+  id: 19zm70c1
+  use_best: false
+overrides:
+  dataset:
+    base:
+      workers: 0
+      cache: null
+    val: {}
+    test: {}
+    train: {}
+  trainer:
+    accelerator: "cpu"
+    devices: "auto"
+    limit_predict_batches: 1

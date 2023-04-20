@@ -1,0 +1,19 @@
+run:
+  project: pbim-reference-gans-mean-weighted-random
+  entity: ma-thesis-kohlmann
+  id: [l7ox2b2a, qpo2dru7]
+  separate: true
+  use_best: false
+output_path: "/out/pbim/S3/{{NAME}}/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}
+  dataset:
+    base:
+      grouping: "pbim"
+    test:
+      path: "/data/PBIM/S3/merged/anomalous/reference/mean-weighted-random/assembled.dat"
+      shuffle: false

@@ -1,0 +1,17 @@
+base: "./base.yml"
+supervised: True
+model:
+  type: "supervised_lstm"
+  input_size: 27
+  input_channels: 1
+  output_size: 27
+  hidden_size: 64
+  dropout: 0.1
+  lstm_layers: 2
+  classifier_layers:
+    - 64
+    - 32
+  bidirectional: True
+trainer:
+  logger:
+    name: "lstm"

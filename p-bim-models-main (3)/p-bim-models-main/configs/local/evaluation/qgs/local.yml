@@ -1,0 +1,31 @@
+run:
+  project: qgs-agcrn
+  entity: ma-thesis-kohlmann
+  id: tusv868j
+output_path: "/tmp/agcrn/$ID"
+
+overrides:
+  test_config:
+    type: mae
+    errors: /tmp/agcrn/$ID/errors.npy
+    threshold_fraction: 0.95
+    aggregation: mean
+
+  dataset:
+    base:
+      workers: 8
+      cache: null
+    test:
+      path: "../data/assembled/qgs/anomalous/all/assembled.dat"
+      shuffle: True
+  trainer:
+    accelerator: "cpu"
+    devices: "auto"
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}
+  adjacency_matrix:
+    path: "../data/adjacency_matrices/QUGS/adjacency_distance_100%.npy"
+    type: "file"

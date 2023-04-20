@@ -1,0 +1,12 @@
+base: "./base.yml"
+model:
+  type: "tgcn"
+  input_size: 30
+  hidden_size: 64
+  input_channels: 1
+  output_channels: 1
+loss:
+  type: "mse"
+adjacency_matrix:
+  type: "uniform"
+  num_nodes: 30

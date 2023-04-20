@@ -1,0 +1,15 @@
+base: "./base.yml"
+model:
+  type: "mtgnn"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  gcn_depth: 4
+  dropout: 0.1
+  dilation_exponential: 2
+  num_layers: 2
+  conv_channels: 64
+  residual_channels: 32
+  skip_channels: 64
+loss:
+  type: "mae"

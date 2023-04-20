@@ -1,0 +1,21 @@
+base: "../base.yml"
+dataset:
+  train:
+    path: &p "/data/PBIM/weeks-1000ms/week-01/assembled-week-01-2018-01-01T00:00:00-2018-01-06T23:59:59.dat"
+  val:
+    path: *p
+  test:
+    path: *p
+model:
+  type: "mlp"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  output_channels: 1
+  hidden_sizes:
+    - 256
+    - 32
+  dropout: 0.1
+trainer:
+  logger:
+    name: "mlp-1000ms"

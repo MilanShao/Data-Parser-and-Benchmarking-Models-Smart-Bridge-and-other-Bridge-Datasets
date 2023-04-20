@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pp-s3-july-week-02-interpolate-uniform
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-preprocessor:0.1
+          name: preprocess
+          imagePullPolicy: "Always"
+          env:
+            - name: INPUT_FILE
+              value: "/data/PBIM/S3/assembled/interpolate/july-week-02/assembled.dat"
+            - name: OUTPUT_FILE
+              value: "/data/PBIM/S3/post-processed/interpolate-uniform/july-week-02/assembled.dat"
+            - name: STRATEGY
+              value: "uniform"
+            - name: STRATEGY_ARGS
+              value: "--num-samples 100127 --window-size 128"
+            - name: SEED
+              value: "42"
+          resources:
+            limits:
+              cpu: "2"
+              memory: "24Gi"
+            requests:
+              cpu: "1"
+              memory: "4Gi"
+          command: ["bash", "./scripts/postprocess.sh"]
+          volumeMounts:
+            - mountPath: /data # directory IN the container
+              name: data # matches volume-name from below
+            - mountPath: /tmp
+              name: tmp
+      imagePullSecrets:
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/assembled/"
+            secretRef:
+              name: ceph-secret
+        - name: tmp
+          emptyDir: {}

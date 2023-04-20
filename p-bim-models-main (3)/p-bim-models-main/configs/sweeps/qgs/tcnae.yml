@@ -1,0 +1,42 @@
+program: bin/main.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - sweep
+  - /app/configs/sweeps/qgs/base.yml
+  - ${args_json_file}
+method: random
+metric:
+  name: val_TimeSeriesMAE
+  goal: minimize
+name: qgs-sweep-tcnae
+project: qgs-tcnae
+parameters:
+  model:
+    parameters:
+      type:
+        value: "tcnae"
+      input_size:
+        value: 30
+      input_channels:
+        value: 1
+      output_size:
+        value: 30
+      output_channels:
+        value: 1
+      num_layer:
+        values: [5, 6, 7, 8]
+      dropout:
+        values: [0.1, 0.2]
+      conv_output_size:
+        values: [32, 64, 128]
+      num_filter:
+        values: [16, 32, 64, 128]
+      avg_pool_size:
+        values: [8, 16, 32]
+      hidden_size:
+        values: [8, 16, 32]
+      kernel_size:
+        values: [3, 5, 7]
+

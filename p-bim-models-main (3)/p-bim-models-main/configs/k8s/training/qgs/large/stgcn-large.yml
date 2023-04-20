@@ -1,0 +1,14 @@
+base: "./base.yml"
+model:
+  type: "stgcn"
+  input_size: 30
+  num_blocks: 6
+  kernel_size_gc: 3
+  kernel_size_tc: 5
+  dropout: 0.1
+adjacency_matrix:
+  type: "file"
+  path: "/adjacency_matrices/QGS/qgs_a_correlation.npy"
+
+
+

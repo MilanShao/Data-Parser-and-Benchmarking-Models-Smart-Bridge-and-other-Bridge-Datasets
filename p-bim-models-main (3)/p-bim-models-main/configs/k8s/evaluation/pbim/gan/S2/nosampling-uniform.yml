@@ -1,0 +1,19 @@
+run:
+  project: pbim-reference-gans-nosampling-uniform
+  entity: ma-thesis-kohlmann
+  id: [wlas0e9d, bvf4il3l, t0ur1grf, zvkoid4n]
+  separate: true
+  use_best: false
+output_path: "/out/pbim/S2/{{NAME}}/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}
+  dataset:
+    base:
+      grouping: "pbim"
+    test:
+      path: "/data/PBIM/S2/merged/anomalous/reference/nosampling-uniform/assembled.dat"
+      shuffle: false

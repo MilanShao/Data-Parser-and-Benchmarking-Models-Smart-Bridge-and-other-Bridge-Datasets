@@ -1,0 +1,15 @@
+{
+  "base_path": "/data/PBIM/",
+  "output_file": "/data/PBIM/supervised/assembled.dat",
+  "keep_statistics": false,
+  "files": [
+    {
+       "relative_path": "N/mean/june-week-01/assembled.dat",
+       "is_anomalous": false
+    },
+    {
+       "relative_path": "S1/mean/july-week-02/assembled.dat",
+       "is_anomalous": true
+    }
+  ]
+}

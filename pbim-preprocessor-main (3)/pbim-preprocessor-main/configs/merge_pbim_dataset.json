@@ -1,0 +1,15 @@
+{
+  "base_path": "../data/assembled/PBIM/",
+  "output_file": "/tmp/3-weeks/assembled.dat",
+  "use_statistics_from": "../data/assembled/PBIM/N/april-week-01/assembled.dat",
+  "files": [
+    {
+       "relative_path": "N/april-week-01/assembled.dat",
+       "is_anomalous": false
+    },
+    {
+       "relative_path": "S1/july-week-02/assembled.dat",
+       "is_anomalous": true
+    }
+  ]
+}

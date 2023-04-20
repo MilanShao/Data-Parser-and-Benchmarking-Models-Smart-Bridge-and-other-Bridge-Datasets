@@ -1,0 +1,52 @@
+dataset:
+  base:
+    batch_size: 64
+    workers: 12
+    window_size: 128
+    horizon_size: 128
+    shuffle: false
+    in_memory: True
+  train:
+    path: &p "/data/PBIM/weeks/week-01/assembled-week-01-2017-11-03T00:00:00-2017-11-09T23:59:59.dat"
+    ratio: 0.8
+    shuffle: true
+  val:
+    path: *p
+    ratio: 0.1
+  test:
+    path: *p
+    ratio: 0.1
+denormalize: true
+loss:
+  type: "mse"
+  reduction: "mean"
+  multi_step: True
+metrics:
+  - "mae"
+  - "mape"
+  - "rmse"
+  - "mse"
+optimizers:
+  optimizer:
+    name: "adam"
+    lr: 0.001
+    weight_decay: 0
+  scheduler:
+    name: "exponential"
+    gamma: 0.99
+trainer:
+  devices: 1
+  accelerator: "gpu"
+  max_epochs: 50
+  logger:
+    log_model: True
+  checkpoint:
+    metric: "val_TimeSeriesMAE"
+    dirpath: "/tmp/checkpoints"
+    save_top_k: 3
+    filename: "checkpoint-{epoch}-mae-{val_TimeSeriesMAE:.4f}"
+  early_stopping:
+    metric: "val_TimeSeriesMAE"
+    patience: 10
+    verbose: True
+    delta: 0.005

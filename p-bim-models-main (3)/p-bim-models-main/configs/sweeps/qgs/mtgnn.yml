@@ -1,0 +1,46 @@
+program: bin/main.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - sweep
+  - /app/configs/sweeps/qgs/base.yml
+  - ${args_json_file}
+method: random
+metric:
+  name: val_TimeSeriesMAE
+  goal: minimize
+name: qgs-sweep-mtgnn
+project: qgs-mtgnn
+parameters:
+  loss:
+    parameters:
+      type:
+        value: "mae"
+  model:
+    parameters:
+      type:
+        value: "mtgnn"
+      input_size:
+        value: 30
+      input_channels:
+        value: 1
+      output_size:
+        value: 30
+      output_channels:
+        value: 1
+      num_layers:
+        values: [2, 4, 6]
+      gcn_depth:
+        value: 4
+      conv_channels:
+        values: [32, 64, 128]
+      residual_channels:
+        values: [32, 64, 128]
+      skip_channels:
+        values: [32, 64, 128]
+      dropout:
+        values: [0.1, 0.2]
+      dilation_exponential:
+        values: [1, 2, 4, 8]
+

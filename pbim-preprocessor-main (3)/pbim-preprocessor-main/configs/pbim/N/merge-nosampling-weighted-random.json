@@ -1,0 +1,21 @@
+{
+  "base_path": "/data/PBIM/",
+  "output_file": "/data/PBIM/N/merged/reference/nosampling-weighted-random/assembled.dat",
+  "files": [
+    {
+        "relative_path": "N/post-processed/nosampling-weighted-random/january-week-01/assembled.dat",
+        "is_anomalous": false,
+        "include_in_statistics": true
+    },
+    {
+        "relative_path": "N/post-processed/nosampling-weighted-random/april-week-01/assembled.dat",
+        "is_anomalous": false,
+        "include_in_statistics": true
+    },
+    {
+        "relative_path": "N/post-processed/nosampling-weighted-random/july-week-01/assembled.dat",
+        "is_anomalous": false,
+        "include_in_statistics": true
+    }
+]
+}

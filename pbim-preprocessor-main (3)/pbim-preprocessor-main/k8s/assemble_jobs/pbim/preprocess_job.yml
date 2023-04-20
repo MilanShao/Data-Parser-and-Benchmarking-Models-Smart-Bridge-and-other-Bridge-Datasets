@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: p-bim-preprocess-s1-q4
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-preprocessor:0.1
+          name: preprocess
+          imagePullPolicy: "Always"
+          env:
+            - name: ZIP_FILE_PATH
+              value: "/data/Messquerschnitt_04.zip"
+            - name: OUTPUT_PATH
+              value: "/out/S1"
+            - name: TMP_PATH
+              value: "/tmp"
+            - name: SCENARIO
+              value: "S1"
+          resources:
+            limits:
+              cpu: "2"
+              memory: "8Gi"
+            requests:
+              cpu: "1"
+              memory: "4Gi"
+          command: ["bash", "./scripts/preprocess_pbim_artificial.sh"]
+          volumeMounts:
+            - mountPath: /data # directory IN the container
+              name: data # matches volume-name from below
+            - mountPath: /out
+              name: out
+      imagePullSecrets:
+        - name: github-registry
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/scratch/p-bim-preprocesed/artificial-unpacked"
+            secretRef:
+              name: ceph-secret
+            readOnly: true
+        - name: out
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/scratch/p-bim-preprocesed/artificial-intermediate"
+            secretRef:
+              name: ceph-secret

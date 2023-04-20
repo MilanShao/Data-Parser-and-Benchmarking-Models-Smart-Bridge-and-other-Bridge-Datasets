@@ -1,0 +1,25 @@
+base: "./base.yml"
+model:
+  loss: "bce"
+  generator:
+    layer_type: "linear"
+    layers:
+      - 256
+      - 512
+    latent_size: 2
+    input_size: 54
+  discriminator:
+    layers:
+      - 64
+      - 128
+      - 128
+      - 64
+      - 32
+    kernel_size: 3
+    input_channels: 1
+    input_size: 54
+    clip_value: 0.01
+optimizers:
+  discriminator:
+    optimizer:
+      frequency: 1

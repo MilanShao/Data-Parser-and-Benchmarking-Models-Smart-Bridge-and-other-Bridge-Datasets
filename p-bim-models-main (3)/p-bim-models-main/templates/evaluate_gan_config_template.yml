@@ -1,0 +1,16 @@
+run:
+  project: {{PROJECT}}
+  entity: ma-thesis-kohlmann
+  id: ""
+  separate: true
+output_path: "/out/pbim/{{SCENARIO}}/{{NAME}}/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}
+  dataset:
+    test:
+      path: "/data/PBIM/{{SCENARIO}}/merged/anomalous/reference/{{AGGREGATION}}-{{STRATEGY}}/assembled.dat"
+      shuffle: false

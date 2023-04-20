@@ -1,0 +1,23 @@
+run:
+  project: z24-reference-gans
+  entity: ma-thesis-kohlmann
+  id: ljmb009g
+  separate: true
+  use_best: false
+output_path: "/tmp/z24/gan/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+  trainer:
+    accelerator: "cpu"
+    devices: "auto"
+    limit_test_batches: 1000
+  dataset:
+    base:
+      batch_size: 64
+      workers: 8
+    test:
+      shuffle: true
+      path: "../data/assembled/Z24/week-10/assembled-week-10-1998-08-01T00:00:00-1998-08-06T23:59:59.dat"

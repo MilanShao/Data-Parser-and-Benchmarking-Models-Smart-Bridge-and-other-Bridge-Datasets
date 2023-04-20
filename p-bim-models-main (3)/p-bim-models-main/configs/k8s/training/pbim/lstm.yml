@@ -1,0 +1,48 @@
+dataset:
+  base:
+    path: "/data/assembled-2018-11-01T00:00:00-2018-11-30T23:59:59.dat"
+    cache: "/cache/dataset"
+    batch_size: 128
+    workers: 12
+    window_size: 60
+    horizon_size: 0
+    mirror: True
+    shuffle: false
+    length: 2591999
+  train:
+    ratio: 0.8
+    shuffle: true
+  val:
+    ratio: 0.1
+  test:
+    ratio: 0.1
+model:
+  type: "lstm"
+  input_size: 36
+  output_size: 36
+  hidden_size: 16
+  num_layers: 2
+  loss:
+    type: "mae"
+    reduction: "mean"
+    multi_step: False
+
+trainer:
+  devices: 1
+  accelerator: "gpu"
+  max_epochs: 50
+  logger:
+    project: pbim-prebuilt
+    name: lstm-november-2018
+    log_model: True
+  checkpoint:
+    metric: "val_loss"
+    dirpath: "/checkpoints/lstm/"
+    save_top_k: 3
+    filename: "checkpoint-{epoch}-{val_loss:.4f}"
+  early_stopping:
+    metric: "val_loss"
+    patience: 5
+    verbose: True
+    delta: 0.001
+

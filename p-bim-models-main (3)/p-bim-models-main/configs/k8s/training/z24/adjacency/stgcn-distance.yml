@@ -1,0 +1,13 @@
+base: "./base.yml"
+model:
+  type: "stgcn"
+  input_size: 249
+  num_blocks: 2
+loss:
+  type: "mse"
+adjacency_matrix:
+  type: "file"
+  path: "/adjacency_matrices/Z24/z24_distance.npy"
+trainer:
+  logger:
+    name: "stgcn-adj-distance"

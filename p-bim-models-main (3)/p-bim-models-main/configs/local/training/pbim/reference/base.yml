@@ -1,0 +1,35 @@
+dataset:
+  base:
+    batch_size: 8
+    workers: 0
+    window_size: 128
+    horizon_size: 0
+    shuffle: false
+    in_memory: True
+  train:
+    shuffle: true
+optimizers:
+  generator:
+    optimizer:
+      frequency: 0.5
+      name: "adam"
+      lr: 0.001
+      weight_decay: 0
+  discriminator:
+    optimizer:
+      frequency: 1
+      name: "adam"
+      lr: 0.001
+      weight_decay: 0
+type: "gan"
+trainer:
+  devices: "auto"
+  accelerator: "mps"
+  max_epochs: 15
+  logger:
+    log_model: True
+  checkpoint:
+    dirpath: "/tmp/checkpoints"
+    save_top_k: -1
+    filename: "checkpoint-{epoch}"
+

@@ -1,0 +1,35 @@
+program: bin/main.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - sweep
+  - /app/configs/sweeps/qgs/base.yml
+  - ${args_json_file}
+method: random
+metric:
+  name: val_TimeSeriesMAE
+  goal: minimize
+name: qgs-sweep-vrae
+project: qgs-vrae
+parameters:
+  model:
+    parameters:
+      type:
+        value: "vrae"
+      input_size:
+        value: 30
+      input_channels:
+        value: 1
+      output_size:
+        value: 30
+      hidden_dim:
+        values: [32, 64, 96, 128]
+      latent_dim:
+        values: [8, 16, 32]
+      num_layers:
+        values: [1, 2]
+      block:
+        values: ["LSTM", "GRU"]
+      dropout:
+        values: [0.1, 0.2]

@@ -1,0 +1,48 @@
+program: bin/main.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - sweep
+  - /app/configs/sweeps/qgs/base.yml
+  - ${args_json_file}
+method: random
+metric:
+  name: val_TimeSeriesMAE
+  goal: minimize
+name: qgs-sweep-agcrn
+project: qgs-agcrn
+parameters:
+  loss:
+    parameters:
+      type:
+        value: "mae"
+  model:
+    parameters:
+      type:
+        value: "agcrn"
+      input_size:
+        value: 30
+      input_channels:
+        value: 1
+      output_channels:
+        value: 1
+      output_size:
+        value: 30
+      num_layers:
+        values: [2, 3, 4]
+      node_embedding_dim:
+        values: [8, 12, 16]
+      rnn_hidden_dim:
+        values: [32, 64, 96]
+      dropout:
+        values: [0.1, 0.2]
+      cheb_k:
+        value: 2
+  optimizers:
+    parameters:
+      optimizer:
+        parameters:
+          lr:
+            value: 0.001
+

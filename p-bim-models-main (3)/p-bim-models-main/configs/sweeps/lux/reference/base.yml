@@ -1,0 +1,36 @@
+dataset:
+  base:
+    batch_size: 64
+    workers: 12
+    window_size: 128
+    horizon_size: 0
+    shuffle: false
+    in_memory: True
+    grouping: "lux"
+  train:
+    shuffle: true
+optimizers:
+  generator:
+    optimizer:
+      frequency: 1
+      name: "adam"
+      lr: 0.001
+      weight_decay: 0
+  discriminator:
+    optimizer:
+      frequency: 1
+      name: "adam"
+      lr: 0.001
+      weight_decay: 0
+type: "gan"
+trainer:
+  devices: 1
+  accelerator: "gpu"
+  max_epochs: 20
+  logger:
+    log_model: True
+  checkpoint:
+    dirpath: "/tmp/checkpoints"
+    save_top_k: -1
+    filename: "checkpoint-{epoch}"
+

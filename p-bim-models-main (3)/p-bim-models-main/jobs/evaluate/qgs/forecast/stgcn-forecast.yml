@@ -1,0 +1,93 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: qgs-forecast-stgcn
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-train:0.1
+          name: forecast-model
+          imagePullPolicy: "Always"
+          env:
+            - name: CONFIG_FILE
+              value: "/app/configs/k8s/evaluation/qgs/forecast/forecast-stgcn.yml"
+            - name: WANDB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wandb-token
+                  key: token
+          resources:
+            limits:
+              cpu: "14"
+              memory: "16Gi"
+              nvidia.com/gpu: "1"
+            requests:
+              cpu: "8"
+              memory: "8Gi"
+              nvidia.com/gpu: "1"
+          command: ["bash", "./scripts/predict.sh"]
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /out
+              name: out
+            - mountPath: /checkpoints
+              name: checkpoints
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /.config
+              name: tmp
+            - mountPath: /.cache
+              name: tmp
+            - mountPath: /dev/shm
+              name: dshm
+            - mountPath: /.local
+              name: tmp
+            - mountPath: /adjacency_matrices
+              name: adjacency-matrices
+      imagePullSecrets:
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/assembled"
+            secretRef:
+              name: ceph-secret
+            readOnly: true
+        - name: checkpoints
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/models/checkpoints"
+            secretRef:
+              name: ceph-secret
+        - name: out
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/data/evaluations/"
+            secretRef:
+              name: ceph-secret
+        - name: adjacency-matrices
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/data/adjacency_matrices"
+            secretRef:
+              name: ceph-secret
+        - name: tmp
+          emptyDir: {}
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: "2Gi"

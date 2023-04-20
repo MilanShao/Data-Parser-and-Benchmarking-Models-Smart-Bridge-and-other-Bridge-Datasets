@@ -1,0 +1,14 @@
+base: "./base.yml"
+model:
+  type: "mlp"
+  input_size: 241
+  input_channels: 1
+  output_size: 241
+  output_channels: 1
+  hidden_sizes:
+    - 128
+    - 64
+  dropout: 0.1
+trainer:
+  logger:
+    name: "mlp"

@@ -1,0 +1,21 @@
+run:
+  project: qgs-agcrn
+  entity: ma-thesis-kohlmann
+  id: tusv868j
+output_path: "/tmp/agcrn/$ID"
+save_predictions: true
+save_errors: true
+overrides:
+  dataset:
+    base:
+      workers: 0
+      batch_size: 64
+    test:
+      path: "../data/assembled/qgs/A/zzzAU.dat"
+  trainer:
+    accelerator: "cpu"
+    devices: "auto"
+    limit_predict_batches: 10
+  adjacency_matrix:
+    path: "../data/adjacency_matrices/QUGS/adjacency_distance_100%.npy"
+    type: "file"

@@ -1,0 +1,15 @@
+{
+  "base_path": "/data/LUX/",
+  "output_file": "/data/LUX/supervised/assembled.dat",
+  "keep_statistics": false,
+  "files": [
+    {
+       "relative_path": "undamaged-mean/assembled.dat",
+       "is_anomalous": false
+    },
+    {
+       "relative_path": "ds4-mean/assembled.dat",
+       "is_anomalous": true
+    }
+  ]
+}

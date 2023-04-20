@@ -1,0 +1,19 @@
+base: "./base.yml"
+dataset:
+  base:
+    horizon_size: 0
+    mirror: True
+use_model_loss: True
+model:
+  type: "vrae"
+  input_size: 36
+  input_channels: 1
+  output_size: 36
+  hidden_dim: 128
+  latent_dim: 32
+  dropout: 0.1
+  rnn_layer: 2
+  block: "LSTM"
+trainer:
+  logger:
+    name: "vrae-test"

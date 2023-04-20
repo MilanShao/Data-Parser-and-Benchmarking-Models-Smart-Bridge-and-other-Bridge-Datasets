@@ -1,0 +1,100 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wandb-agent-deployment-{{NAME}}-{{AGENT_ID}}
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-low
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-train:0.1
+          name: train-model
+          imagePullPolicy: "Always"
+          env:
+            - name: SWEEP_ID
+              value: "{{SWEEP_ID}}"
+            - name: CONFIG_FILE
+              value: "/app/configs/sweep/qgs/base.yml"
+            - name: COUNT
+              value: "10"
+            - name: WANDB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: wandb-token
+                  key: token
+          resources:
+            limits:
+              nvidia.com/gpu: "1"
+              cpu: "14"
+              memory: "16Gi"
+            requests:
+              nvidia.com/gpu: "1"
+              cpu: "8"
+              memory: "8Gi"
+          command: ["bash", "./scripts/sweep.sh"]
+          volumeMounts:
+            - mountPath: /app/configs
+              name: config
+            - mountPath: /data
+              name: data
+            - mountPath: /adjacency_matrices
+              name: adjacency-matrices
+            - mountPath: /checkpoints
+              name: checkpoints
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /.config
+              name: tmp
+            - mountPath: /.cache
+              name: tmp
+            - mountPath: /cache
+              name: tmp
+            - mountPath: /.local
+              name: tmp
+            - mountPath: /dev/shm
+              name: dshm
+      imagePullSecrets:
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/assembled"
+            secretRef:
+              name: ceph-secret
+            readOnly: true
+        - name: config
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/p-bim-models/configs"
+            readOnly: true
+            secretRef:
+              name: ceph-secret
+        - name: checkpoints
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/models/checkpoints"
+            secretRef:
+              name: ceph-secret
+        - name: adjacency-matrices
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/data/adjacency_matrices"
+            secretRef:
+              name: ceph-secret
+        - name: tmp
+          emptyDir: {}
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi

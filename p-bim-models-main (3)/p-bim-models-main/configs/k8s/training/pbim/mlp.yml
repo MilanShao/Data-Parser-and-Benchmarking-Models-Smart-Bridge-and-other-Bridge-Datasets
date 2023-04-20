@@ -1,0 +1,26 @@
+base: "./base.yml"
+dataset:
+  base:
+  train:
+    path: &p "/data/PBIM/weeks/week-02/assembled-week-02-2017-11-10T00:00:00-2017-11-16T23:59:59.dat"
+    ratio: 0.8
+    shuffle: true
+  val:
+    path: *p
+    ratio: 0.1
+  test:
+    path: *p
+    ratio: 0.1
+model:
+  type: "mlp"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  output_channels: 1
+  hidden_sizes:
+    - 256
+    - 32
+  dropout: 0.1
+trainer:
+  logger:
+    name: mlp-100ms

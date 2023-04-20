@@ -1,0 +1,71 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: p-bim-assemble-2018-07-s2-nosampling
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-preprocessor:0.1
+          name: preprocess
+          imagePullPolicy: "Always"
+          env:
+            - name: MODE
+              value: "pbim"
+            - name: BASE_PATH
+              value: "/data"
+            - name: OUTPUT_PATH
+              value: "/out/nosampling/july-week-02/assembled.dat"
+            - name: START_TIME
+              value: "2018-07-12T00:00:00"
+            - name: END_TIME
+              value: "2018-07-15T23:59:59"
+            - name: RESOLUTION
+              value: "0.0"
+            - name: STRATEGY
+              value: "mean"
+            - name: FORMAT
+              value: "binary"
+            - name: CHANNEL
+              value: "relevant"
+          resources:
+            limits:
+              cpu: "2"
+              memory: "16Gi"
+            requests:
+              cpu: "1"
+              memory: "8Gi"
+          command: ["bash", "./scripts/assemble.sh"]
+          volumeMounts:
+            - mountPath: /data # directory IN the container
+              name: data # matches volume-name from below
+            - mountPath: /out
+              name: out
+            - mountPath: /tmp
+              name: tmp
+      imagePullSecrets:
+        - name: github-registry
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/scratch/p-bim-preprocesed/artificial-intermediate/S2"
+            secretRef:
+              name: ceph-secret
+            readOnly: true
+        - name: out
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/home/stud/kohlmann/MA/assembled/PBIM/S2"
+            secretRef:
+              name: ceph-secret
+        - name: tmp
+          emptyDir: {}

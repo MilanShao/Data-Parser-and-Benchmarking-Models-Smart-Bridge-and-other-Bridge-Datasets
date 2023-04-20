@@ -1,0 +1,15 @@
+run:
+  project: qgs-tcnae
+  entity: ma-thesis-kohlmann
+  id: ""
+output_path: "/out/qgs/tcnae/stats/$ID"
+save_errors: true
+overrides:
+  dataset:
+    test:
+      path: "/data/QGS/B/zzzBU.dat"
+      shuffle: false
+      offset: 0.33
+      ratio: 0.33
+
+

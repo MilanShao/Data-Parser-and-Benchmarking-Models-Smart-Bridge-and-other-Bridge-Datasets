@@ -1,0 +1,10 @@
+base: "./base.yml"
+model:
+  type: "stgcn"
+  input_size: 30
+  num_blocks: 2
+loss:
+  type: "mse"
+adjacency_matrix:
+  type: "uniform"
+  num_nodes: 30

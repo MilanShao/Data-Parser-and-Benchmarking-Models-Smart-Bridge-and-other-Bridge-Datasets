@@ -1,0 +1,14 @@
+base: "./base.yml"
+dataset:
+  base:
+    horizon_size: 12
+    mirror: False
+model:
+  type: "tgcn"
+  input_size: 36
+  hidden_size: 64
+loss:
+  type: "mse"
+adjacency_matrix:
+  type: "uniform"
+  num_nodes: 36

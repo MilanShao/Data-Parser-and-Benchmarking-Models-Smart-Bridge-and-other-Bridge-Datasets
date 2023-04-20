@@ -1,0 +1,20 @@
+run:
+  project: qgs-stgcn
+  entity: ma-thesis-kohlmann
+  id: "x8a77apo"
+  separate: true
+output_path: "/out/qgs/stgcn/eval/mahalanobis"
+overrides:
+  test_config:
+    type: "mahalanobis"
+    aggregation: "mean"
+    errors: "/out/qgs/stgcn/stats/$ID/errors.npy"
+    threshold_fraction: 0.95
+  dataset:
+    test:
+      path: "/data/QGS/anomalous/all/assembled.dat"
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+    - accuracy: {}

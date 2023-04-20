@@ -1,0 +1,16 @@
+run:
+  project: z24-reference-gans
+  entity: ma-thesis-kohlmann
+  id: {{RUN_ID}}
+  separate: true
+  use_best: false
+output_path: "/out/z24/{{NAME}}/"
+overrides:
+  metrics:
+    - precision: {}
+    - recall: {}
+    - f1: {}
+dataset:
+  test:
+    path: "/data/Z24/anomalous/week-02-week-11.dat"
+    shuffle: false

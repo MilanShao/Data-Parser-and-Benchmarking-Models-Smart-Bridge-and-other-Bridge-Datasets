@@ -1,0 +1,132 @@
+{
+  "template_path": "template/assemble_job_template_z24.yml",
+  "output_path": "k8s/assemble_jobs/z24/avt",
+  "assembly_configs": [
+    {
+      "identifier": "scenario-01-avt",
+      "meta": {
+        "scenario": "01",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-02-avt",
+      "meta": {
+        "scenario": "02",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-03-avt",
+      "meta": {
+        "scenario": "03",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-04-avt",
+      "meta": {
+        "scenario": "04",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-05-avt",
+      "meta": {
+        "scenario": "05",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-06-avt",
+      "meta": {
+        "scenario": "06",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-07-avt",
+      "meta": {
+        "scenario": "07",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-08-avt",
+      "meta": {
+        "scenario": "08",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-09-avt",
+      "meta": {
+        "scenario": "09",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-10-avt",
+      "meta": {
+        "scenario": "10",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-11-avt",
+      "meta": {
+        "scenario": "11",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-12-avt",
+      "meta": {
+        "scenario": "12",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-13-avt",
+      "meta": {
+        "scenario": "13",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-14-avt",
+      "meta": {
+        "scenario": "14",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-15-avt",
+      "meta": {
+        "scenario": "15",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-16-avt",
+      "meta": {
+        "scenario": "16",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-17-avt",
+      "meta": {
+        "scenario": "17",
+        "scenario_type": "avt"
+      }
+    },
+    {
+      "identifier": "scenario-18-avt",
+      "meta": {
+        "scenario": "18",
+        "scenario_type": "avt"
+      }
+    }
+  ]
+}

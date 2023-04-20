@@ -1,0 +1,18 @@
+base: "./base.yml"
+dataset:
+  base:
+    horizon_size: 0
+    mirror: True
+model:
+  type: "mlp"
+  input_size: 30
+  input_channels: 1
+  output_size: 30
+  output_channels: 1
+  hidden_sizes:
+    - 256
+    - 32
+  dropout: 0.1
+trainer:
+  logger:
+    project: "qgs-mlp"

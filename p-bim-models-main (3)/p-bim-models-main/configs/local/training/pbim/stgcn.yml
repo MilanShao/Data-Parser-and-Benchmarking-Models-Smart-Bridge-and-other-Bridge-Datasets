@@ -1,0 +1,13 @@
+base: "./base.yml"
+dataset:
+  base:
+    horizon_size: 12
+model:
+  type: "stgcn"
+  input_size: 36
+  num_blocks: 2
+loss:
+  type: "mse"
+adjacency_matrix:
+  type: "uniform"
+  num_nodes: 36

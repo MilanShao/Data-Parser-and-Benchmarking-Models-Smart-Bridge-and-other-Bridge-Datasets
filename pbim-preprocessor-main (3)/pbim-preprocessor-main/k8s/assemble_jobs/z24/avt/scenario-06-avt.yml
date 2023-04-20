@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: z24-assemble-06-avt
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      priorityClassName: research-med
+      containers:
+        - image: ls6-stud-registry.informatik.uni-wuerzburg.de/studkohlmann-pbim-preprocessor:0.1
+          name: preprocess
+          imagePullPolicy: "Always"
+          env:
+            - name: BASE_PATH
+              value: "/data"
+            - name: OUTPUT_PATH
+              value: "/out/avt/06/assembled.dat"
+            - name : SCENARIO
+              value: "06"
+            - name: SCENARIO_TYPE
+              value: "avt"
+            - name: FORMAT
+              value: "binary"
+            - name: CHANNELS
+              value: "all"
+          resources:
+            limits:
+              cpu: "2"
+              memory: "8Gi"
+            requests:
+              cpu: "1"
+              memory: "4Gi"
+          command: ["bash", "./scripts/assemble_z24_dataset.sh"]
+          volumeMounts:
+            - mountPath: /data # directory IN the container
+              name: data # matches volume-name from below
+            - mountPath: /out
+              name: out
+            - mountPath: /tmp
+              name: tmp
+      imagePullSecrets:
+        - name: lsx-registry
+      restartPolicy: "Never"
+      volumes:
+        - name: data
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: "/scratch/p-bim/Z24_altrn"
+            secretRef:
+              name: ceph-secret
+            readOnly: true
+        - name: out
+          cephfs:
+            monitors:
+              - 132.187.14.16,132.187.14.17,132.187.14.19,132.187.14.20
+            user: studkohlmann
+            path: /home/stud/kohlmann/MA/assembled/Z24/
+            secretRef:
+              name: ceph-secret
+        - name: tmp
+          emptyDir: {}
